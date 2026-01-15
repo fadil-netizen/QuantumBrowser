@@ -1,0 +1,8 @@
+Google|https://www.google.com/search?q=%s
+Bing|https://www.bing.com/search?q=%s
+DuckDuckGo|https://duckduckgo.com/?q=%s
+Yahoo|https://search.yahoo.com/search?p=%s
+Wikipedia|https://id.wikipedia.org/wiki/Special:Search?search=%s
+Baidu|https://www.baidu.com/s?wd=%s
+Yandex|https://yandex.com/search/?text=%s
+Ahmia|https://ahmia.fi/search/?q=%s

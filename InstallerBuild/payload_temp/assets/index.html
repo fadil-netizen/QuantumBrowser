@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #202124;
+            color: #e8eaed;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: white;
+            letter-spacing: -2px;
+            user-select: none;
+        }
+
+        .logo span {
+            color: #8ab4f8;
+        }
+
+        form.search-box {
+            position: relative;
+            width: 100%;
+            background: #303134;
+            border-radius: 28px;
+            padding: 2px 15px;
+            border: 1px solid #5f6368;
+            display: flex;
+            align-items: center;
+            height: 52px;
+            margin-bottom: 40px;
+        }
+
+        form.search-box:hover,
+        form.search-box:focus-within {
+            background: #303134;
+            border-color: rgba(223, 225, 229, 0);
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            font-size: 1.1rem;
+            color: #e8eaed;
+            height: 100%;
+        }
+
+        button.search-btn {
+            background: transparent;
+            border: none;
+            color: #9aa0a6;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        button.search-btn:hover {
+            color: #8ab4f8;
+        }
+
+        /* Shortcuts Grid */
+        .shortcuts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .shortcut {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #e8eaed;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100px;
+            height: 110px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .shortcut:hover {
+            background-color: #303134;
+        }
+
+        .icon-circle {
+            width: 48px;
+            height: 48px;
+            background-color: #303134;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .shortcut img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .shortcut:hover .icon-circle {
+            background-color: #3c4043;
+        }
+
+        .label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .add-shortcut {
+            border: 1px dashed #5f6368;
+        }
+
+        .add-shortcut .icon-circle {
+            background: transparent;
+            font-size: 24px;
+            color: #9aa0a6;
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: #202124;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #9aa0a6;
+            opacity: 0;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #e81123;
+            color: white;
+        }
+
+        .shortcut:hover .delete-btn {
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: #303134;
+            width: 400px;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #9aa0a6;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: #202124;
+            border: 1px solid #5f6368;
+            /* Fixed border */
+            border-radius: 4px;
+            padding: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: #8ab4f8;
+            outline: none;
+            /* Make sure outline doesn't override */
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #8ab4f8;
+            border: 1px solid #5f6368;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 180, 248, 0.08);
+        }
+
+        .btn-primary {
+            background: #8ab4f8;
+            color: #202124;
+        }
+
+        .btn-primary:hover {
+            background: #aecbfa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo">Quantum<span>Browser</span></div>
+
+        <form class="search-box" onsubmit="performSearch(event)">
+            <input type="text" id="searchInput" placeholder="Search the web or type a URL" autocomplete="off" autofocus>
+            <button type="submit" class="search-btn">🔍</button>
+        </form>
+
+        <div class="shortcuts" id="shortcuts-grid">
+            <!-- Dynamic shortcuts injected here -->
+        </div>
+    </div>
+
+    <!-- Add Shortcut Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Add Shortcut</h2>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="shortcutName" placeholder="e.g. YouTube">
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input type="text" id="shortcutUrl" placeholder="https://youtube.com">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveShortcut()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Init
+        window.addEventListener('load', () => {
+            getShortcuts();
+        });
+
+        // Search
+        function performSearch(e) {
+            e.preventDefault();
+            const input = document.getElementById('searchInput');
+            let query = input.value.trim();
+            if (!query) return;
+            window.location.href = "quantum://navigate/?q=" + encodeURIComponent(query);
+        }
+
+        // --- Interaction with C# ---
+        function getShortcuts() {
+            if (window.chrome?.webview) window.chrome.webview.postMessage('get-shortcuts');
+        }
+
+        if (window.chrome?.webview) {
+            window.chrome.webview.addEventListener('message', event => {
+                const msg = event.data;
+                if (typeof msg === 'string') {
+                    if (msg.startsWith('shortcuts-data:')) {
+                        const json = msg.substring('shortcuts-data:'.length);
+                        renderShortcuts(JSON.parse(json));
+                    }
+                    else if (msg === 'refresh-shortcuts') {
+                        getShortcuts();
+                    }
+                }
+            });
+        }
+
+        // --- Rendering ---
+        function renderShortcuts(items) {
+            const grid = document.getElementById('shortcuts-grid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'shortcut';
+
+                // Extract domain for favicon
+                let domain = 'google.com';
+                try { domain = new URL(item.url).hostname; } catch { }
+                // Use Google Favicon Service for HD (sz=128)
+                const faviconUrl = "https://www.google.com/s2/favicons?domain=" + domain + "&sz=128";
+
+                el.innerHTML = `
+                    <div class="icon-circle">
+                         <img src="${faviconUrl}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+PHBhdGggZD0iTTEyIDJDMTYuNDEgMiAyMCA1LjU5IDIwIDEwQzIwIDE0LjQxIDE2LjQxIDE4IDEyIDE4QzcuNTkgMTggNCAxNC40MSA0IDEwQzQgNS41OSA3LjU5IDIgMTIgMlpNMTIgMjRDMTcuNTIgMjQgMjIgMTcuNzMgMjIgMTBDMjIgNy4yNSAyMC43NCA0LjcyIDE4LjgxIDMuMEMyMC42NSA0LjY3IDIyIDcuMTggMjIgMTBDMjIgMTQuNDEgMTcuNTIgMTggMTIgMThDNy45OSAxOCAzLjk3IDE1LjY4IDIuNzcgMTIuMzNDNC4xIDE5LjE4IDcuNzEgMjQgMTIgMjRaIiAvPjwvc3ZnPg=='" />
+                    </div>
+                    <span class="label">${item.title}</span>
+                    <div class="delete-btn" title="Remove">×</div>
+                `;
+
+                // Click to navigate
+                el.onclick = (e) => {
+                    if (e.target.classList.contains('delete-btn')) {
+                        e.stopPropagation();
+                        deleteShortcut(item.url);
+                    } else {
+                        window.location.href = item.url;
+                    }
+                };
+
+                grid.appendChild(el);
+            });
+
+            // Add Button
+            const addBtn = document.createElement('div');
+            addBtn.className = 'shortcut add-shortcut';
+            addBtn.innerHTML = `
+                <div class="icon-circle">
+                     <span>+</span>
+                </div>
+                <span class="label">Add shortcut</span>
+            `;
+            addBtn.onclick = openModal;
+            grid.appendChild(addBtn);
+        }
+
+        // --- Actions ---
+        function deleteShortcut(url) {
+            if (confirm('Remove this shortcut?')) {
+                window.chrome.webview.postMessage('delete-shortcut:' + url);
+            }
+        }
+
+        // --- Modal ---
+        const modal = document.getElementById('modalOverlay');
+        const nameInput = document.getElementById('shortcutName');
+        const urlInput = document.getElementById('shortcutUrl');
+
+        function openModal() {
+            nameInput.value = '';
+            urlInput.value = '';
+            modal.style.display = 'flex';
+            nameInput.focus();
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function saveShortcut() {
+            const name = nameInput.value.trim();
+            let url = urlInput.value.trim();
+
+            if (!name || !url) return;
+            if (!url.startsWith('http')) url = 'https://' + url;
+
+            window.chrome.webview.postMessage('add-shortcut:' + name + '|' + url);
+            closeModal();
+        }
+
+        // Close on outside click
+        modal.onclick = (e) => {
+            if (e.target === modal) closeModal();
+        };
+    </script>
+</body>
+
+</html>

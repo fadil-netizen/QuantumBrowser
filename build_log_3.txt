@@ -1,0 +1,17 @@
+[QuantumBrowser] Starting C# Build...
+SUCCESS: The process "QuantumBrowser.exe" with PID 30468 has been terminated.
+[QuantumBrowser] Compiling...
+Microsoft (R) Visual C# Compiler version 4.8.9221.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+
+BrowserForm.WebView.cs(1185,20): warning CS0219: The variable 'activeSection' is assigned but its value is never used
+QuantumBrowser.cs(64,23): warning CS0219: The variable 'HTCLIENT' is assigned but its value is never used
+QuantumBrowser.cs(65,23): warning CS0219: The variable 'HTCAPTION' is assigned but its value is never used
+BrowserForm.UI.cs(28,24): warning CS0169: The field 'QuantumBrowser.BrowserForm.btnHome' is never used
+
+[Success] Build Complete!
+Run bin\QuantumBrowser.exe to start.
+

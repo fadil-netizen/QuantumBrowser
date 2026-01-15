@@ -1,0 +1,39 @@
+[QuantumBrowser] Starting C# Build...
+[QuantumBrowser] Compiling...
+Microsoft (R) Visual C# Compiler version 4.8.9221.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+
+BrowserForm.WebView.cs(69,20): error CS1540: Cannot access protected member 'System.Windows.Forms.Control.DoubleBuffered' via a qualifier of type 'System.Windows.Forms.Panel'; the qualifier must be of type 'QuantumBrowser.BrowserForm' (or derived from it)
+BrowserForm.WebView.cs(198,42): error CS1061: 'Microsoft.Web.WebView2.Core.CoreWebView2' does not contain a definition for 'FaviconUriChanged' and no extension method 'FaviconUriChanged' accepting a first argument of type 'Microsoft.Web.WebView2.Core.CoreWebView2' could be found (are you missing a using directive or an assembly reference?)
+BrowserForm.WebView.cs(449,68): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(449,69): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(449,77): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(449,78): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(449,91): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(449,92): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(449,109): error CS1002: ; expected
+BrowserForm.WebView.cs(449,109): error CS1525: Invalid expression term ')'
+BrowserForm.WebView.cs(449,111): error CS1002: ; expected
+BrowserForm.WebView.cs(450,69): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(450,70): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(450,78): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(450,79): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(450,92): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(450,93): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(450,113): error CS1002: ; expected
+BrowserForm.WebView.cs(450,113): error CS1525: Invalid expression term ')'
+BrowserForm.WebView.cs(450,115): error CS1002: ; expected
+BrowserForm.WebView.cs(451,65): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(451,66): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(451,74): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(451,75): error CS1003: Syntax error, ':' expected
+BrowserForm.WebView.cs(451,88): error CS1525: Invalid expression term '.'
+BrowserForm.WebView.cs(451,89): error CS1003: Syntax error, ':' expected
+QuantumBrowser.cs(64,23): warning CS0219: The variable 'HTCLIENT' is assigned but its value is never used
+QuantumBrowser.cs(65,23): warning CS0219: The variable 'HTCAPTION' is assigned but its value is never used
+[Error] Compilation Failed!
+Press any key to continue . . . 
+Terminate batch job (Y/N)? 

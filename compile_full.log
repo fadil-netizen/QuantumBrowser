@@ -1,0 +1,10 @@
+Microsoft (R) Visual C# Compiler version 4.8.9221.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+
+BrowserForm.WebView.cs(518,54): error CS1061: 'System.Threading.Tasks.Task<Microsoft.Web.WebView2.Core.CoreWebView2BrowserExtension>' does not contain a definition for 'IsCompletedSuccessfully' and no extension method 'IsCompletedSuccessfully' accepting a first argument of type 'System.Threading.Tasks.Task<Microsoft.Web.WebView2.Core.CoreWebView2BrowserExtension>' could be found (are you missing a using directive or an assembly reference?)
+BrowserForm.WebView.cs(1092,20): warning CS0219: The variable 'activeSection' is assigned but its value is never used
+QuantumBrowser.cs(64,23): warning CS0219: The variable 'HTCLIENT' is assigned but its value is never used
+QuantumBrowser.cs(65,23): warning CS0219: The variable 'HTCAPTION' is assigned but its value is never used

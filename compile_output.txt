@@ -1,0 +1,9 @@
+Microsoft (R) Visual C# Compiler version 4.8.9221.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+
+BrowserForm.Settings.cs(414,33): error CS0165: Use of unassigned local variable 'RenderPage'
+BrowserForm.WebView.cs(190,17): error CS4033: The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
+BrowserForm.WebView.cs(291,33): error CS1061: 'Microsoft.Web.WebView2.Core.CoreWebView2DownloadStartingEventArgs' does not contain a definition for 'Uri' and no extension method 'Uri' accepting a first argument of type 'Microsoft.Web.WebView2.Core.CoreWebView2DownloadStartingEventArgs' could be found (are you missing a using directive or an assembly reference?)
